@@ -1,0 +1,126 @@
+﻿
+@model MyTicketsModel;
+@{
+    ViewData["Title"] = "My Tickets";
+    Layout = "/Views/Shared/_Layout.cshtml";
+    ViewData["TopMargin"] = "mt-3";
+    var prevDisabled = !Model.Tickets.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.Tickets.HasNextPage ? "disabled" : "";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-sm-6 p-3">
+            <div class="border border-2 rounded border-dark">
+            <div class="bg-warning border-bottom border-dark">
+                <h2 class=" text-white ms-3">Create New Ticket</h2>
+            </div>
+            <form asp-action="CreateNewTicket" method="post" class="p-3">
+                <div class="form-group">
+                <label for="ddlprojects">Project</label>
+                <select id="ddlprojects" class="form-select w-75 mt-2" asp-items="@(new SelectList(Model.ProjectModel, "ProjectID", "Title"))" name="projectId" onchange="javascript:GetUsers(this.value);">
+
+                </select>
+                </div>
+                <div class="form-group mt-2">
+                <label for="ddlusers">Assign to</label>
+                <select id="ddlusers" name="userId" class="form-select w-75 mt-2">
+
+                </select>
+                </div>
+                <div class="form-group mt-2">
+                    <label for="type">Type</label>
+                    <select class="form-select w-75 mt-2" name="Type" id="type">
+                        <option selected>Choose a ticket type</option>
+                        <option>Bug</option>
+                        <option>Feature</option>
+                        <option>Enhancement</option>
+                    </select>
+                </div>
+                <div class="form-floating">
+                    <input type="text" class="form-control w-75 mt-3" name="Title" id="title"/>
+                    <label for="title">Title</label>
+                </div>
+                <div class="form-floating">
+                    <textarea id="description" class="form-control w-75 mt-3" name="Description" rows="1"></textarea>
+                    <label for="description">Description</label>
+                </div>
+                <div class="form-group mt-2">
+                    <label for="priority">Priority</label>
+                    <select class="form-select w-75 mt-2" name="Priority" id="priority">
+                        <option selected>Assign a priority to the ticket</option>
+                        <option>High</option>
+                        <option>Medium</option>
+                        <option>Low</option>
+                    </select>
+                </div>
+                <button class="btn btn-primary mt-3" type="submit">Submit</button>
+            </form>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 p-3">
+            <div class="border border-2 rounded border-dark">
+            <div class="border-bottom border-dark bg-warning">
+                <h2 class="text-white ms-3">My Tickets</h2>
+            </div>
+            @foreach(var ticket in Model.Tickets)
+            {
+            <div class="row border border-2 border-dark mx-3 @ViewData["TopMargin"]">
+                <div class="col-6 bg-info border-bottom border-dark"><h3>@ticket.Title</h3></div>
+                <div class="col-6 bg-info d-flex justify-content-end border-bottom border-dark"><p>Assigned By: @Model.GetUserFullNameById(ticket.AssignedByID)</p></div>
+                <div class="col-6 mt-2"><b>Project: </b>@Model.GetProjectTitleById(ticket.ProjectID)</div>
+                <div class="col-6 mt-2"><b>Date Created: </b>@ticket.DateCreated</div>
+                <div class="col-6 @ViewData["TopMargin"]"><b>Type: </b>@ticket.Type</div>
+                <div class="col-6 @ViewData["TopMargin"]"><b>Priority: </b>@ticket.Priority</div>
+                <div class="col-12 @ViewData["TopMargin"]"><b>Description: </b>@ticket.Description</div>
+                <div class="col my-2">@Html.ActionLink("Full Ticket", "Index", "SingleTicket", new { id = ticket.TicketID})</div>
+            </div>
+            }
+            <a asp-action="Index"
+            asp-route-pageNumber="@(Model.Tickets.PageIndex - 1)"
+            asp-route-currentFilter="@ViewData["CurrentFilter"]"
+            class="btn btn-primary @prevDisabled ms-3 @ViewData["TopMargin"] mb-3">
+            Previous
+            </a>
+            <a asp-action="Index"
+            asp-route-pageNumber="@(Model.Tickets.PageIndex + 1)"
+            asp-route-currentFilter="@ViewData["CurrentFilter"]"
+            class="btn btn-primary @nextDisabled @ViewData["TopMargin"] mb-3">
+            Next
+            </a>
+            </div>
+        </div>
+    </div>
+    </div>
+    
+    <div class="row mt-4">
+        
+</div>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+<script language="javascript" type="text/javascript">
+    function GetUsers(_projectId) {
+        var procemessage = "<option value='0'> Please wait...</option>";
+        $("#ddlusers").html(procemessage).show();
+        var url = "/MyTickets/GetApplicationUserByProjectId/";
+
+        $.ajax({
+            url: url,
+            data: { projectId: _projectId },
+            cache: false,
+            type: "POST",
+            success: function (data) {
+                var markup = "<option value='0'>Select User</option>";
+                for (var x = 0; x < data.length; x++) {
+                    markup += "<option value=" + data[x].Value + ">" + data[x].Text + "</option>";
+                }
+                $("#ddlusers").html(markup).show();
+            },
+            error: function (reponse) {
+                alert("error : " + reponse);
+            }
+        });
+
+    }
+</script>
+

@@ -1,0 +1,74 @@
+﻿@model SingleTicketModel;
+@using BugTracker.Data;
+@using BugTracker.ProjectServices;
+@inject UserManager<ApplicationUser> UserManager
+@inject ProjectService service
+@{
+    ViewData["Title"] = @Model.ticket.Title;
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col border border-2 border-dark rounded mx-3 mx-sm-0">
+            <div class="row">
+                <div class="col-6 bg-warning border-bottom border-dark"><h3>@Model.ticket.Title</h3></div>
+                <div class="col-6 bg-warning d-flex justify-content-end border-bottom border-dark"><p>Assigned by: @ViewData["FullName"]</p></div>
+                <div class="col-6 mt-2"><p>Project: @service.getProjectById(Model.ticket.ProjectID).Title</p></div>
+                <div class="col-6 mt-2"><p>Date Created: @Model.ticket.DateCreated</p></div>
+                <div class="col-6"><p>Type: @Model.ticket.Type</p></div>
+                <div class="col-6"><p>Priority: @Model.ticket.Priority</p></div>
+                <div class="col-12"><p>Description: @Model.ticket.Description</p></div>
+                <div class="col-12">
+                    <form asp-controller="SingleTicket" asp-action="UploadFile" method="post"  
+                        enctype="multipart/form-data">  
+      
+                        
+                        <div>
+                            <input type="file" name="file" class="form-control"/>
+                        </div>
+                        <div class="mt-3">
+                            <button type="submit" class="btn-primary btn">Upload File</button>
+                        </div>
+                        <input type="hidden" name="ticketID" value="@Model.ticket.TicketID"/>
+                          
+                   </form>
+                </div>
+                @if (@Model.UploadMessage == "Incorrect ext")
+                {
+                <div class="col-12 mt-2">
+                    <p>File extension not accepted. <br> Accepted file extensions are: .txt, .pdf, .doc, .docx, .xls,
+                        .xlsx, .png, .jpg, .jpeg, .gif, .csv, .css, .html, and .json.
+                    </p>
+                </div>
+                }
+                <div class="col-12 col-sm-8 my-3">
+                    <div class="accordion" id="fileAccordion">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                    Files
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#fileAccordion">
+                                <div class="accordion-body">
+                                    @foreach(var filePath in Model.ticket.FilePaths)
+                                    {
+                                        <div>
+                                            <a asp-action="GetContent" asp-controller="SingleTicket" asp-route-fileID="@filePath.ID" target="_blank">@filePath.UnhiddenPath.Split("\\")[1]</a>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <form class="col-12" asp-controller="SingleTicket" asp-action="DeleteTicket" method="post">
+                    <input type="hidden" name="ticketID" value="@Model.ticket.TicketID"/>
+                    <button type="submit" class="btn btn-danger mb-2">Delete Ticket</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+

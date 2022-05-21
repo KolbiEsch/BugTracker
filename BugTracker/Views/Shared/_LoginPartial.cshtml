@@ -1,0 +1,63 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using BugTracker.Data;
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@{
+    var user = await UserManager.GetUserAsync(User);
+}
+<ul class="nav__list--right">
+@if (SignInManager.IsSignedIn(User))
+{
+    @if (user.GroupName.Length > 32)
+    {
+            <li>
+                <a class="nav__link"
+                asp-action="SwitchUser"
+                asp-controller="DemoUser"
+                asp-route-groupName=@user.GroupName
+                asp-route-userToSwitchTo="Developer"
+                >
+                Switch to Developer
+                </a>
+            </li>
+            <li>
+                <a class="nav__link"
+                asp-action="SwitchUser"
+                asp-controller="DemoUser"
+                asp-route-groupName=@user.GroupName
+                asp-route-userToSwitchTo="Submitter">
+                Switch to Submitter
+                </a>
+            </li>
+            <li>
+                <a class="nav__link"
+                asp-action="SwitchUser"
+                asp-controller="DemoUser"
+                asp-route-groupName=@user.GroupName
+                asp-route-userToSwitchTo="Admin">
+                Switch to Admin
+                </a>
+            </li>    
+    }
+    <li class="nav__item">
+        <a  class="nav__link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @((await UserManager.GetUserAsync(User)).FirstName)  @((await UserManager.GetUserAsync(User)).LastName)</a>
+    </li>
+    <li class="nav__item">
+        @if (user.GroupName.Length > 32)
+        {
+        <a class="nav__link"
+        asp-action="EndDemo"
+        asp-controller="DemoUser"
+        asp-route-groupName=@user.GroupName>
+        End Demo
+        </a>
+        } else
+          {
+          <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+            <button type="submit" class="nav__link logout-button">Logout</button>
+          </form>   
+          }
+    </li>
+    
+}
+</ul>

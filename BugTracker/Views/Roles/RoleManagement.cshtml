@@ -1,0 +1,108 @@
+﻿@using BugTracker.Data
+@using Microsoft.AspNetCore.Identity;
+@using BugTracker.Models;
+@using System.Linq;
+@model ViewModel
+
+@{
+    Layout = "/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Role Management";
+    var prevDisabled = !Model.paginatedAppUsers.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.paginatedAppUsers.HasNextPage ? "disabled" : "";
+}
+<section class="section-roles">
+
+    <div class="card">
+        <h2 class="card__header">Add Users to Role</h2>
+        <div class="card__body">
+            <form asp-action="AssignUserRole" method="post" class="form">
+                <div class="form__group">
+                    <label class="form__label" for="username-select">Choose a User</label>
+                    <select class="select-multiple" asp-items="@Model.selectListItems" name="Id" id="username-select" size="4"></select>
+                </div>
+                <div class="form__group">
+                    <label class="form__label" for="role-select">Choose a Role</label>
+                    <div class="select-dropdown">
+                        <select asp-items="@(new SelectList(Model.Roles))" name="Name" id="role-select"></select>
+                        <span class="select-dropdown__arrow"></span>
+                    </div>
+                </div>
+                <button type="submit" class="form__btn">Add User to Role</button>
+            </form>
+        </div>
+     </div>
+        
+     <div class="card">
+        <h2 class="card__header">Find User</h2>
+        <div class="card__body">
+            <form asp-action="RoleManagement" method="get" class="">
+                <div class="form__group">
+                    <label class="form__label" for="findByName">Find by name:</label>
+                    <input id="findByName" class="form__input" type="text" name="searchString" value="@ViewData["CurrentFilter"]" placeholder="Name"/>
+                </div>
+                <div class="form__group">
+                    <button type="submit" class="form__btn">Search</button>
+                </div>
+            </form>
+            <div class="card__group">
+                <table class="mb-small">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Roles</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach(var item in Model.paginatedAppUsers)
+                        {
+                            <tr>
+                                <td>@item.FirstName @item.LastName</td>
+                                <td>@item.Email</td>
+                                <td>@Model.userRole.GetUserRole(item).Result</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <a asp-action="RoleManagement"
+                asp-route-pageNumber="@(Model.paginatedAppUsers.PageIndex - 1)"
+                asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                class="form__link mr-small @prevDisabled">
+                Previous
+                </a>
+                <a asp-action="RoleManagement"
+                asp-route-pageNumber="@(Model.paginatedAppUsers.PageIndex + 1)"
+                asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                class="form__link @nextDisabled">
+                Next
+                </a>
+            </div>
+        </div>
+     </div>
+
+    <div class="card">
+        <h2 class="card__header">Create a New Role</h2>
+        <div class="card__body">
+            <form class="form" asp-action="CreateRole" method="post">
+            <div class="form__group">
+                <label asp-for="CreateRoleViewModel.RoleName" class="form__label"></label>
+                <input asp-for="CreateRoleViewModel.RoleName" class="form__input" placeholder="Name">
+                <span asp-validation-for="CreateRoleViewModel.RoleName" class="text-danger"></span>
+            </div>
+            <button type="submit" class="form__btn">Create Role</button>
+        </form>
+        </div>
+    </div>
+
+</section>
+    
+        
+            
+
+
+
+
+
+
+
+

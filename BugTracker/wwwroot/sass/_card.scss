@@ -1,0 +1,20 @@
+﻿.card {
+    background-color: $color-primary-light;
+    box-shadow: 0 7px 15px 0px rgba(black, 0.1);
+    margin-top: 5rem;
+    height: min-content;
+
+    &__header {
+        background-color: $color-primary-dark;
+        color: $white;
+        padding: 1rem 3rem;
+    }
+
+    &__body {
+        padding: 2rem 3rem 3rem 3rem;
+    }
+
+    &__group {
+        
+    }
+}

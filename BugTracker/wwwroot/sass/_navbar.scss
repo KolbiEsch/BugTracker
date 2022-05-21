@@ -1,0 +1,56 @@
+﻿#navigation {
+    background-color: $bg-dark;
+    
+}
+
+.nav {
+    padding: 1.5rem 2.5rem;
+    position: sticky;
+    top: 0;
+    display: flex;
+
+    &__list {
+        list-style: none;
+        display: flex;
+        margin-right: auto;
+
+        & :not(:last-child) {
+            margin-right: 1.5rem;
+        }
+    }
+
+    &__list--right {
+        display: flex;
+        list-style: none;
+
+        & :not(:last-child) {
+            margin-right: 1.5rem;
+        }
+    }
+
+    &__item {
+    }
+
+    &__link {
+        color: $white;
+        text-decoration: none;
+        font-weight: 600;
+        letter-spacing: 1px;
+        transition: color .2s;
+
+
+        &:hover {
+            color: $color-primary-light;
+        }
+    }
+}
+
+.form-inline .logout-button {
+    background: none;
+    border: none;
+    font-family: "Fredoka", sans-serif;
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-right: 0;
+    
+}

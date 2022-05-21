@@ -1,0 +1,53 @@
+﻿@using BugTracker.Models;
+@model MyProjectsModel;
+@{
+    ViewData["Title"] = "My Projects";
+    var prevDisabled = !Model.paginatedProjects.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.paginatedProjects.HasNextPage ? "disabled" : "";
+}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-10">
+            <form asp-action="Index">
+                <div class="form-actions align-items-end">
+                    <p>
+                        Find by Title: <input id="Title" type="text" name="searchString" value="@ViewData["CurrentFilter"]"/>
+                        <button id="TitleSubmit" type="submit" class="btn btn-primary">Search</button>
+                    </p>
+                </div>
+            </form>
+            <div class="border border-2 border-dark rounded">
+                <h2 class="text-white border-bottom border-dark bg-warning pb-2 text-center">Projects</h2>
+            <div class="p-3">
+            @foreach(var project in Model.paginatedProjects)
+            {
+                <p><b>Title:</b> <div>@project.Title</div></p>
+                <p><b>Central Focus: </b> <div>@project.CentralFocus</div></p>
+                <p><b>Description: </b> <div>@project.Description</div></p>
+                @if (User.IsInRole("Admin"))
+                {
+                    <form asp-controller="MyProjects" asp-action="DeleteProject" method="post">
+                        <input type="hidden" name="projectID" value="@project.ProjectID"/>
+                        <button type="submit" class="btn btn-danger mb-3">Delete Project</button>
+                    </form>
+                } 
+            }
+            <a asp-action="Index"
+            asp-route-pageNumber="@(Model.paginatedProjects.PageIndex - 1)"
+            asp-route-currentFilter="@ViewData["CurrentFilter"]"
+            class="btn btn-primary @prevDisabled">
+            Previous
+            </a>
+            <a asp-action="Index"
+            asp-route-pageNumber="@(Model.paginatedProjects.PageIndex + 1)"
+            asp-route-currentFilter="@ViewData["CurrentFilter"]"
+            class="btn btn-primary @nextDisabled">
+            Next
+            </a>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+

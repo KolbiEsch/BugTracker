@@ -1,0 +1,63 @@
+﻿.section-demo {
+    grid-column: center-start / center-end;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+}
+
+.demo {
+    padding: 2.5rem 2.5rem;
+    display: inline-block;
+
+    &__header {
+        font-size: 5rem;
+    }
+
+    &__login-type {
+        margin-bottom: 2rem;
+    }
+
+    &__form {
+    }
+
+    &__button {
+        display: block;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 1.5rem 1.5rem;
+        transition: all .1s;
+        border: 2px solid transparent;
+
+        &:hover {
+            border: 2px solid white;
+        }
+    }
+
+    &__svg {
+        background: $color-primary-light;
+        width: 20rem;
+        height: 20rem;
+        mask-size: 20rem 20rem;
+        -webkit-mask-size: 20rem 20rem;
+        mask-repeat: no-repeat;
+        -webkit-mask-repeat: no-repeat;
+    }
+
+    &__svg--1 {
+        mask-image: url("../css/administrator-developer.svg");
+        -webkit-mask-image: url("../css/administrator-developer.svg");
+    }
+
+    &__svg--2 {
+        mask-image: url("../css/search-user.svg");
+        -webkit-mask-image: url("../css/search-user.svg");
+    }
+
+    &__svg--3 {
+        mask-image: url("../css/software-engineer.svg");
+        -webkit-mask-image: url("../css/software-engineer.svg");
+    }
+}

@@ -1,0 +1,15 @@
+{
+  "version": "1.0.0",
+  "name": "asp.net",
+  "private": true,
+  "scripts": {
+    "watch-sass": "node-sass wwwroot/sass/main.scss wwwroot/css/site.css -w"
+      
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.4",
+    "node-sass": "^7.0.1",
+    "npm-run-all": "^4.1.5",
+    "postcss-cli": "^9.1.0"
+  }
+}

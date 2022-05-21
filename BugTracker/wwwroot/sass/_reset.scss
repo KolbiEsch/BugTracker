@@ -1,0 +1,27 @@
+﻿table {
+    border-spacing: 0;
+    border: 1px solid black;
+}
+
+th, td {
+    text-align: left;
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
+    
+}
+
+tr {
+    transition: all .06s;
+
+    &:hover {
+        background-color: $white;
+    }
+}
+
+a.disabled {
+    pointer-events: none;
+    cursor: default;
+    opacity: 0.5;
+}
+
+

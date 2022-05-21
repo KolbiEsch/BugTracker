@@ -1,0 +1,57 @@
+﻿@page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "Log in";
+}
+
+@{
+    Layout = "~/Areas/Identity/Pages/_AuthLayout.cshtml"; 
+}
+
+
+        <section class="login">
+            <form class="form" id="account" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                
+                    <div class="form__group form__group--center">
+                        <label asp-for="Input.Email" class="form__label">Email</label>
+                        <input asp-for="Input.Email" class="form__input" autocomplete="username" aria-required="true" placeholder="Email"/>
+                        <span asp-validation-for="Input.Email" class="text-danger"></span>
+                    </div>
+                
+                
+                
+                    <div class="form__group form__group--center">
+                        <label asp-for="Input.Password" class="form__label">Password</label>
+                        <input asp-for="Input.Password" class="form__input" autocomplete="current-password" aria-required="true" placeholder="Password"/>
+                        <span asp-validation-for="Input.Password" class="text-danger"></span>
+                    </div>
+                
+                
+                
+                    <div class="form__radio-group">
+                        <label asp-for="Input.RememberMe" class="form__radio-label">
+                            <input class="form__radio-input" asp-for="Input.RememberMe"/>
+                            <span class="form__radio-button"></span>
+                            @Html.DisplayNameFor(m => m.Input.RememberMe)
+                        </label>
+                    </div>
+                <button id="form-submit" type="submit" class="form__btn form__btn--center">Log in</button>
+                <div class="form__group">
+                    <p>
+                        <a class="form__link" id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
+                    </p>
+                    <p>
+                        <a class="form__link" id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
+                    </p>
+                    <p>
+                        <a class="form__link" id="demo-user" asp-controller="DemoUser" asp-action="Index">Login as a demo user</a>
+                    </p>
+                </div>
+            </form>
+        </section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
