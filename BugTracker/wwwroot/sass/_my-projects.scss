@@ -1,0 +1,27 @@
+﻿.my-projects {
+    grid-column: center-start / center-end;
+}
+
+.project {
+    padding: 0.5rem 0.5rem;
+    margin: 2rem 0;
+    font-size: 0;
+    background: linear-gradient(to bottom, $color-primary-dark, $color-primary-light);
+
+    &__container {
+        background-color: $color-primary-light;
+        padding: 2rem 1.5rem;
+    }
+
+    &__group {
+        width: 50%;
+        margin-bottom: 1.3rem;
+        display: inline-block;
+        font-size: 1.6rem;
+
+
+        &-title {
+            font-weight: 600;
+        }
+    }
+}
