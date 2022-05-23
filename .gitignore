@@ -12,8 +12,11 @@
 
 appsettings.json
 BugTracker.db
+<<<<<<< HEAD
 BugTracker.db-wal
 BugTracker.db-shm
+=======
+>>>>>>> 8fc53c06456747e9e2053263477f0a889a463355
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
