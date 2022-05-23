@@ -22,7 +22,7 @@ namespace BugTracker.Controllers
 
         public async Task<IActionResult> Index(string? searchString, string? currentFilter, int? pageNumber)
         {
-            int pageSize = 3;
+            int pageSize = 1;
             if (searchString != null)
             {
                 pageNumber = 1;

@@ -12,9 +12,22 @@
 
     &__body {
         padding: 2rem 3rem 3rem 3rem;
+        
+    }
+
+    &__group-container {
+        font-size: 0;
     }
 
     &__group {
-        
+        width: 50%;
+        margin-bottom: 1.3rem;
+        display: inline-block;
+        font-size: 1.6rem;
+
+
+        &-title {
+            font-weight: 600;
+        }
     }
 }

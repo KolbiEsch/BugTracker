@@ -286,6 +286,9 @@ a.disabled {
   cursor: default;
   opacity: 0.5; }
 
+a.block {
+  display: block; }
+
 .card {
   background-color: #ffbf69;
   box-shadow: 0 7px 15px 0px rgba(0, 0, 0, 0.1);
@@ -297,6 +300,15 @@ a.disabled {
     padding: 1rem 3rem; }
   .card__body {
     padding: 2rem 3rem 3rem 3rem; }
+  .card__group-container {
+    font-size: 0; }
+  .card__group {
+    width: 50%;
+    margin-bottom: 1.3rem;
+    display: inline-block;
+    font-size: 1.6rem; }
+    .card__group-title {
+      font-weight: 600; }
 
 .mb-small {
   margin-bottom: 2rem; }
@@ -328,10 +340,9 @@ a.disabled {
   .project__container {
     background-color: #ffbf69;
     padding: 2rem 1.5rem; }
-  .project__group {
-    width: 50%;
-    margin-bottom: 1.3rem;
-    display: inline-block;
-    font-size: 1.6rem; }
-    .project__group-title {
-      font-weight: 600; }
+
+.my-tickets {
+  grid-column: center-start / center-end;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 3rem; }
