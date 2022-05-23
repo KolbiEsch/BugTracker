@@ -227,7 +227,7 @@ a {
   display: grid;
   grid-template-columns: minmax(auto, 50%) minmax(auto, 50%);
   grid-auto-rows: min-content;
-  column-gap: 3rem; }
+  column-gap: 3.03rem; }
 
 select {
   appearance: none;
