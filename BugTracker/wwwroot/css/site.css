@@ -316,3 +316,22 @@ a.disabled {
   flex-wrap: wrap; }
   .checklist__item:not(:last-child) {
     margin-right: 1rem; }
+
+.my-projects {
+  grid-column: center-start / center-end; }
+
+.project {
+  padding: 0.5rem 0.5rem;
+  margin: 2rem 0;
+  font-size: 0;
+  background: linear-gradient(to bottom, #ff9f1c, #ffbf69); }
+  .project__container {
+    background-color: #ffbf69;
+    padding: 2rem 1.5rem; }
+  .project__group {
+    width: 50%;
+    margin-bottom: 1.3rem;
+    display: inline-block;
+    font-size: 1.6rem; }
+    .project__group-title {
+      font-weight: 600; }

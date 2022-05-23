@@ -6,48 +6,59 @@
     var nextDisabled = !Model.paginatedProjects.HasNextPage ? "disabled" : "";
 }
 
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-10">
-            <form asp-action="Index">
-                <div class="form-actions align-items-end">
-                    <p>
-                        Find by Title: <input id="Title" type="text" name="searchString" value="@ViewData["CurrentFilter"]"/>
-                        <button id="TitleSubmit" type="submit" class="btn btn-primary">Search</button>
-                    </p>
+<section class="my-projects">
+        <div class="card">
+            <h2 class="card__header">Projects</h2>
+            <div class="card__body">
+            <form asp-action="Index" class="form">
+                <div class="form__group">
+                    <label class="form__label" for="Title">Find by Title</label>
+                    <input class="form__input" id="Title" type="text" name="searchString" value="@ViewData["CurrentFilter"]" placeholder="Title"/>
                 </div>
+                <button id="TitleSubmit" type="submit" class="form__btn">Search</button>
             </form>
-            <div class="border border-2 border-dark rounded">
-                <h2 class="text-white border-bottom border-dark bg-warning pb-2 text-center">Projects</h2>
-            <div class="p-3">
+            
             @foreach(var project in Model.paginatedProjects)
             {
-                <p><b>Title:</b> <div>@project.Title</div></p>
-                <p><b>Central Focus: </b> <div>@project.CentralFocus</div></p>
-                <p><b>Description: </b> <div>@project.Description</div></p>
-                @if (User.IsInRole("Admin"))
-                {
-                    <form asp-controller="MyProjects" asp-action="DeleteProject" method="post">
-                        <input type="hidden" name="projectID" value="@project.ProjectID"/>
-                        <button type="submit" class="btn btn-danger mb-3">Delete Project</button>
-                    </form>
-                } 
+             <div class="project">
+                <div class="project__container">
+                    <div class="project__group">
+                        <p class="project__group-title">Title:</p> 
+                        <p>@project.Title</p>
+                    </div>
+                    <div class="project__group">
+                        <p class="project__group-title">Central Focus:</p> 
+                        <p>@project.CentralFocus</p>
+                    </div>
+                    <div class="project__group">
+                        <p class="project__group-title">Description:</p> 
+                        <p>@project.Description</p>
+                    </div>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <form asp-controller="MyProjects" asp-action="DeleteProject" method="post" class="form">
+                            <input type="hidden" name="projectID" value="@project.ProjectID"/>
+                            <button type="submit" class="form__btn">Delete Project</button>
+                        </form>
+                    } 
+                </div>
+             </div>
             }
+                
             <a asp-action="Index"
             asp-route-pageNumber="@(Model.paginatedProjects.PageIndex - 1)"
             asp-route-currentFilter="@ViewData["CurrentFilter"]"
-            class="btn btn-primary @prevDisabled">
+            class="form__link mr-small @prevDisabled">
             Previous
             </a>
             <a asp-action="Index"
             asp-route-pageNumber="@(Model.paginatedProjects.PageIndex + 1)"
             asp-route-currentFilter="@ViewData["CurrentFilter"]"
-            class="btn btn-primary @nextDisabled">
+            class="form__link @nextDisabled">
             Next
             </a>
             </div>
-            </div>
+            
         </div>
-    </div>
-</div>
+</section>
 
