@@ -164,7 +164,9 @@ a {
   color: #ffffff;
   cursor: pointer;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  transition: all .3s ease-out; }
+  transition: all .3s ease-out;
+  font-family: inherit;
+  font-size: 1.6rem; }
   .form__btn:hover {
     transform: translateY(-0.15rem); }
   .form__btn:active {
@@ -227,7 +229,7 @@ a {
   display: grid;
   grid-template-columns: minmax(auto, 50%) minmax(auto, 50%);
   grid-auto-rows: min-content;
-  column-gap: 3.06rem; }
+  column-gap: 3rem; }
 
 select {
   appearance: none;
@@ -346,3 +348,36 @@ a.block {
   display: grid;
   grid-template-columns: 1fr 1fr;
   column-gap: 3rem; }
+
+.single-ticket {
+  grid-column: center-start / center-end; }
+
+.inputfile {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1; }
+
+.inputfile + label {
+  color: #ffffff;
+  background-color: #ff9f1c;
+  padding: 0.75rem 1.3rem;
+  display: inline-block;
+  width: max-content;
+  cursor: pointer;
+  transition: all .3s ease-out;
+  font-size: 1.45rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); }
+
+.inputfile + label:hover {
+  transform: translateY(-0.15rem); }
+
+.inputfile + label:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1); }
+
+.inputfile:focus + label {
+  outline: 1px dotted #000;
+  outline: -webkit-focus-ring-color auto 5px; }
