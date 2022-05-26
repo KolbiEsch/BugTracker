@@ -4,6 +4,7 @@ using System.Net.Mime;
 using BugTracker.Data;
 using BugTracker.Models;
 using BugTracker.ProjectServices;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BugTracker.Controllers
 {
@@ -11,11 +12,13 @@ namespace BugTracker.Controllers
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly ApplicationDbContext _context;
+        private readonly IAuthorizationService _authorizationService;
 
-        public SingleTicketController(UserManager<ApplicationUser> userManager, ApplicationDbContext context)
+        public SingleTicketController(UserManager<ApplicationUser> userManager, ApplicationDbContext context, IAuthorizationService authorizationService)
         {
             _userManager = userManager;
             _context = context;
+            _authorizationService = authorizationService;
         }
        
         [HttpGet]
@@ -23,6 +26,21 @@ namespace BugTracker.Controllers
         {
             var model = new SingleTicketModel();
             Ticket ticket = getTicketByID(id);
+
+            var result = await _authorizationService.AuthorizeAsync(User, ticket, "assignedTicketPolicy");
+
+            if (!result.Succeeded)
+            {
+                if (User.Identity.IsAuthenticated)
+                {
+                    return new ForbidResult();
+                }
+                else
+                {
+                    return new ChallengeResult();
+                }
+            }
+
             model.ticket = ticket;
             model.UploadMessage = uploadMessage;
             var user = await _userManager.FindByIdAsync(ticket.AssignedByID);

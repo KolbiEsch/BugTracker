@@ -5,6 +5,8 @@ using System.Configuration;
 using BugTracker;
 using BugTracker.Data;
 using BugTracker.ProjectServices;
+using Microsoft.AspNetCore.Authorization;
+using BugTracker.Data.Authorization;
 
 var builder = WebApplication.CreateBuilder(new WebApplicationOptions
 {
@@ -40,7 +42,6 @@ builder.Services.ConfigureApplicationCookie(options =>
     options.SlidingExpiration = true;
 });
 
-
 builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddRazorPages();
@@ -51,10 +52,20 @@ var emailConfig = config.GetSection("EmailConfiguration").Get<EmailConfiguration
 
 builder.Services.AddSingleton(emailConfig);
 
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("assignedTicketPolicy",
+        policy =>
+            policy.AddRequirements(
+                new AssignedTicketRequirement()
+            ));
+});
 
 builder.Services.AddScoped<ProjectService>();
 
 builder.Services.AddScoped<IEmailSender, EmailSender>();
+
+builder.Services.AddSingleton<IAuthorizationHandler, DocumentAuthorizationHandler>();
 
 
 var app = builder.Build();
@@ -67,7 +78,6 @@ if (app.Environment.IsDevelopment())
 else
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
