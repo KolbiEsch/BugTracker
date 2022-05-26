@@ -2,7 +2,8 @@
 @using Microsoft.AspNetCore.Identity;
 @using BugTracker.Models;
 @using System.Linq;
-@model ViewModel
+@model ManageUserRolesModel
+@inject UserManager<ApplicationUser> _userManager;
 
 @{
     Layout = "/Views/Shared/_Layout.cshtml";
@@ -20,13 +21,23 @@
                     <label class="form__label" for="username-select">Choose a User</label>
                     <select class="select-multiple" asp-items="@Model.selectListItems" name="Id" id="username-select" size="4"></select>
                 </div>
+                
                 <div class="form__group">
-                    <label class="form__label" for="role-select">Choose a Role</label>
-                    <div class="select-dropdown">
-                        <select asp-items="@(new SelectList(Model.Roles))" name="Name" id="role-select"></select>
-                        <span class="select-dropdown__arrow"></span>
+                    <div class="checklist">
+                        @foreach(var role in Model.Roles)
+                        {
+                            <div class="form__radio-group checklist__item">
+                                <label for="@role.NormalizedName" class="form__radio-label">
+                                    <input class="form__radio-input" id="@role.NormalizedName"
+                                    value="@role.Name" name="Name" type="radio"/>
+                                    <span class="form__radio-button"></span>
+                                    @role.Name
+                                </label>
+                            </div>
+                        }
                     </div>
                 </div>
+
                 <button type="submit" class="form__btn">Add User to Role</button>
             </form>
         </div>
@@ -59,7 +70,7 @@
                             <tr>
                                 <td>@item.FirstName @item.LastName</td>
                                 <td>@item.Email</td>
-                                <td>@Model.userRole.GetUserRole(item).Result</td>
+                                <td>@_userManager.GetRolesAsync(item).Result.FirstOrDefault("").ToString()</td>
                             </tr>
                         }
                     </tbody>
@@ -85,9 +96,9 @@
         <div class="card__body">
             <form class="form" asp-action="CreateRole" method="post">
             <div class="form__group">
-                <label asp-for="CreateRoleViewModel.RoleName" class="form__label"></label>
-                <input asp-for="CreateRoleViewModel.RoleName" class="form__input" placeholder="Name">
-                <span asp-validation-for="CreateRoleViewModel.RoleName" class="text-danger"></span>
+                <label asp-for="RoleName" class="form__label"></label>
+                <input asp-for="RoleName" class="form__input" placeholder="Name">
+                <span asp-validation-for="RoleName" class="text-danger"></span>
             </div>
             <button type="submit" class="form__btn">Create Role</button>
         </form>

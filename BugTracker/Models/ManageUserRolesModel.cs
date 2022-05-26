@@ -2,19 +2,19 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using BugTracker.Data;
 using BugTracker.RolesClasses;
+using System.ComponentModel.DataAnnotations;
 
 namespace BugTracker.Models
 {
-    public class ViewModel
+    public class ManageUserRolesModel
     {
-        public  CreateRoleViewModel  CreateRoleViewModel { get; set; }
-
         public List<IdentityRole> Roles { get; set; }
 
         public SelectList selectListItems { get; set; }
 
-        public UserRole userRole { get; set; }
-
         public PaginatedList<ApplicationUser> paginatedAppUsers { get; set; }
+
+        [Display(Name = "Role")]
+        public string? RoleName { get; set; }
     }
 }

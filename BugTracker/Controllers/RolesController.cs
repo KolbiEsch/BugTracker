@@ -18,7 +18,7 @@ namespace BugTracker.Controllers
     {
 
         private readonly UserManager<ApplicationUser> _userManager;
-        private readonly ViewModel myModel = new ViewModel();
+        private readonly ManageUserRolesModel myModel = new ManageUserRolesModel();
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly ApplicationDbContext _db;
 
@@ -43,7 +43,7 @@ namespace BugTracker.Controllers
 
             ViewData["CurrentFilter"] = searchString;
 
-            ViewModel model = new ViewModel();
+            ManageUserRolesModel model = new ManageUserRolesModel();
             
             var userId = _userManager.GetUserId(HttpContext.User);
             var contextUser = await _userManager.FindByIdAsync(userId);
@@ -62,24 +62,18 @@ namespace BugTracker.Controllers
             //Instantiate Models
             model.selectListItems = new SelectList(usersList.ToList(), "Id", "FullName");
             model.Roles = _roleManager.Roles.ToList();
-            model.userRole = new UserRole(_userManager, _db);
             
             return View(model);
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateRole(ViewModel model)
+        public async Task<IActionResult> CreateRole(ManageUserRolesModel model)
         {
-
-            var role = new IdentityRole(model.CreateRoleViewModel.RoleName);
-
+            var role = new IdentityRole(model.RoleName);
 
             await _roleManager.CreateAsync(role);
 
-
-
             return RedirectToAction("RoleManagement");
-
         }
         
         [HttpPost]
