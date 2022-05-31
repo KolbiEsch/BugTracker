@@ -28,11 +28,7 @@ body {
     font-size: 1.6rem;
 }
 
-a {
-    text-decoration: none;
-}
-
-.main {
+main {
     display: grid;
     grid-template-columns: [full-start] 8rem [center-start] repeat(8, [col-start] 1fr [col-end]) 
     [center-end] 8rem [full-end];

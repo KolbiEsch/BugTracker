@@ -16,41 +16,49 @@ body {
   background-color: #cbf3f0;
   font-size: 1.6rem; }
 
-a {
-  text-decoration: none; }
-
-.main {
+main {
   display: grid;
   grid-template-columns: [full-start] 8rem [center-start] repeat(8, [col-start] 1fr [col-end]) [center-end] 8rem [full-end];
   height: 80vh; }
-
-#navigation {
-  background-color: #2ec4b6; }
 
 .nav {
   padding: 1.5rem 2.5rem;
   position: sticky;
   top: 0;
-  display: flex; }
+  left: 0;
+  display: flex;
+  background-color: #2ec4b6; }
   .nav__list {
-    list-style: none;
+    display: flex;
+    flex-direction: column; }
+  .nav__list--left {
     display: flex;
     margin-right: auto; }
-    .nav__list :not(:last-child) {
+    .nav__list--left :not(:last-child) {
       margin-right: 1.5rem; }
   .nav__list--right {
-    display: flex;
-    list-style: none; }
+    display: flex; }
     .nav__list--right :not(:last-child) {
       margin-right: 1.5rem; }
+  .nav__item--vertical {
+    margin-top: 1rem; }
   .nav__link {
     color: #ffffff;
     text-decoration: none;
     font-weight: 600;
     letter-spacing: 1px;
-    transition: color .2s; }
+    transition: all .1s;
+    cursor: pointer; }
     .nav__link:hover {
       color: #ffbf69; }
+    .nav__link--vertical {
+      display: block;
+      padding: 1.8rem 1rem; }
+      .nav__link--vertical.active {
+        background-color: #ff9f1c; }
+      .nav__link--vertical:hover {
+        color: #ffffff;
+        background-color: #ff9f1c; }
 
 .form-inline .logout-button {
   background: none;
@@ -81,7 +89,7 @@ a {
   .authenticate__body {
     background-color: #ffbf69; }
 
-.active {
+.authenticate__list .active {
   background: linear-gradient(to bottom, #ffbf69, 88%, #ffb754);
   color: #ffffff; }
 
@@ -157,8 +165,8 @@ a {
 
 .form__btn {
   display: block;
-  width: 30%;
-  padding: 1.1rem 0;
+  width: max-content;
+  padding: 1.1rem 2rem;
   border: none;
   background-color: #ff9f1c;
   color: #ffffff;
@@ -177,7 +185,11 @@ a {
 
 .form__link, .form:link, .form:visited {
   color: black;
-  transition: color .1s; }
+  transition: color .1s;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  font-size: 1.4rem;
+  text-transform: uppercase; }
   .form__link:hover, .form:link:hover, .form:visited:hover {
     color: white; }
 
@@ -291,6 +303,12 @@ a.disabled {
 a.block {
   display: block; }
 
+ul {
+  list-style: none; }
+
+a {
+  text-decoration: none; }
+
 .card {
   background-color: #ffbf69;
   box-shadow: 0 7px 15px 0px rgba(0, 0, 0, 0.1);
@@ -317,6 +335,9 @@ a.block {
 
 .mr-small {
   margin-right: 1.2rem; }
+
+.mt-small {
+  margin-top: 2rem; }
 
 .manage-projects {
   grid-column: center-start / center-end;
@@ -386,3 +407,33 @@ a.block {
   grid-column: center-start / center-end;
   text-align: center;
   margin-top: 3rem; }
+
+.my-account {
+  grid-column: center-start / center-end;
+  text-align: center;
+  margin-top: 3rem; }
+  .my-account__header {
+    background-color: #ff9f1c;
+    padding: 1.5rem 0;
+    color: #ffffff; }
+  .my-account__body {
+    display: flex;
+    height: 60%;
+    background-color: #ffbf69; }
+  .my-account__options {
+    width: 20%; }
+  .my-account__content {
+    width: 80%;
+    padding: 3rem 4rem; }
+
+#qrCode {
+  display: flex;
+  justify-content: center; }
+
+.twoFA-login {
+  grid-column: center-start / center-end;
+  text-align: center; }
+
+.recovery-login {
+  grid-column: center-start / center-end;
+  text-align: center; }

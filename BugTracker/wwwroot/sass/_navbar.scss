@@ -1,16 +1,18 @@
-﻿#navigation {
-    background-color: $bg-dark;
-    
-}
-
+﻿
 .nav {
     padding: 1.5rem 2.5rem;
     position: sticky;
     top: 0;
+    left: 0;
     display: flex;
+    background-color: $bg-dark;
 
     &__list {
-        list-style: none;
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__list--left {
         display: flex;
         margin-right: auto;
 
@@ -21,7 +23,6 @@
 
     &__list--right {
         display: flex;
-        list-style: none;
 
         & :not(:last-child) {
             margin-right: 1.5rem;
@@ -31,16 +32,34 @@
     &__item {
     }
 
+    &__item--vertical {
+        margin-top: 1rem;
+    }
+
     &__link {
         color: $white;
         text-decoration: none;
         font-weight: 600;
         letter-spacing: 1px;
-        transition: color .2s;
-
+        transition: all .1s;
+        cursor: pointer;
 
         &:hover {
             color: $color-primary-light;
+        }
+
+        &--vertical {
+            display: block;
+            padding: 1.8rem 1rem;
+
+            &.active {
+                background-color: $color-primary-dark;
+            }
+
+            &:hover {
+                color: $white;
+                background-color: $color-primary-dark;
+            }
         }
     }
 }

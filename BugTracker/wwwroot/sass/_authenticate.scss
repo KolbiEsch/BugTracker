@@ -34,7 +34,7 @@
     }
 }
 
-.active {
+.authenticate__list .active {
     background: linear-gradient(to bottom, $color-primary-light, 88%, lighten($color-primary-dark, 11%));
     color: $white;
 }

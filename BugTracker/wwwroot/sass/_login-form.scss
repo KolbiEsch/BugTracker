@@ -88,8 +88,8 @@
 
     &__btn {
         display: block;
-        width: 30%;
-        padding: 1.1rem 0;
+        width: max-content;
+        padding: 1.1rem 2rem;
         border: none;
         background-color: $color-primary-dark;
         color: $white;
@@ -118,6 +118,10 @@
     &:visited {
         color: black;
         transition: color .1s;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        font-size: 1.4rem;
+        text-transform: uppercase;
         
 
         &:hover {

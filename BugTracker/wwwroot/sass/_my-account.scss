@@ -1,0 +1,26 @@
+﻿.my-account {
+    grid-column: center-start / center-end;
+    text-align: center;
+    margin-top: 3rem;
+
+    &__header {
+        background-color: $color-primary-dark;
+        padding: 1.5rem 0;
+        color: $white;
+    }
+
+    &__body {
+        display: flex;
+        height: 60%;
+        background-color: $color-primary-light;
+    }
+
+    &__options {
+        width: 20%;
+    }
+
+    &__content {
+        width: 80%;
+        padding: 3rem 4rem;
+    }
+}

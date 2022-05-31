@@ -17,7 +17,7 @@ $(window).resize(function () {
     drawChart();
 })
 
-const navEl = document.body.querySelector("#navigation");
+const navEl = document.body.querySelector(".nav");
 const navHeight = navEl.offsetHeight;
 
 function onLoad(navHeight) {
