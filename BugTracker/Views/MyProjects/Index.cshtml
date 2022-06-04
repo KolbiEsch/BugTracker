@@ -6,10 +6,12 @@
     var nextDisabled = !Model.paginatedProjects.HasNextPage ? "disabled" : "";
 }
 
-<section class="my-projects">
-        <div class="card">
-            <h2 class="card__header">Projects</h2>
-            <div class="card__body">
+<section class="card my-projects">
+        <header class="card__header">
+            <h2>Projects</h2>
+        </header>
+            
+        <div class="card__body">
             <form asp-action="Index" class="form">
                 <div class="form__group">
                     <label class="form__label" for="Title">Find by Title</label>
@@ -36,10 +38,10 @@
                     </div>
                     @if (User.IsInRole("Admin"))
                     {
-                        <form asp-controller="MyProjects" asp-action="DeleteProject" method="post" class="form">
-                            <input type="hidden" name="projectID" value="@project.ProjectID"/>
-                            <button type="submit" class="form__btn">Delete Project</button>
-                        </form>
+                    <form asp-controller="MyProjects" asp-action="DeleteProject" method="post" class="form">
+                        <input type="hidden" name="projectID" value="@project.ProjectID"/>
+                        <button type="submit" class="form__btn">Delete Project</button>
+                    </form>
                     } 
                 </div>
              </div>
@@ -57,8 +59,6 @@
             class="form__link @nextDisabled">
             Next
             </a>
-            </div>
-            
         </div>
 </section>
 

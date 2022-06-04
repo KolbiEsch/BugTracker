@@ -53,5 +53,29 @@ inputs.forEach(function (input) {
     });
 });
 
+function GetUsers(_projectId) {
+    var procemessage = "<option value='0'> Please wait...</option>";
+    $("#ddlusers").html(procemessage).show();
+    var url = "/MyTickets/GetApplicationUserByProjectId/";
+
+    $.ajax({
+        url: url,
+        data: { projectId: _projectId },
+        cache: false,
+        type: "POST",
+        success: function (data) {
+            var markup = "<option value='0'>Select User</option>";
+            for (var x = 0; x < data.length; x++) {
+                markup += "<option value=" + data[x].Value + ">" + data[x].Text + "</option>";
+            }
+            $("#ddlusers").html(markup).show();
+        },
+        error: function (reponse) {
+            alert("error : " + reponse);
+        }
+    });
+
+}
+
 
 

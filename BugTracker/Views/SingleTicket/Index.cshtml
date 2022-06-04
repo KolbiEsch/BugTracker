@@ -7,9 +7,11 @@
     ViewData["Title"] = @Model.ticket.Title;
 }
 
-<section class="single-ticket">
-    <div class="card">
-        <h2 class="card__header">@Model.ticket.Title</h2>
+    <section class="card single-ticket">
+        <header class="card__header">
+            <h2>@Model.ticket.Title</h2>
+        </header>
+        
         <div class="card__body">
             <div class="card__group-container">
                 <div class="card__group">
@@ -49,24 +51,25 @@
                 </div>
                 <input type="hidden" name="ticketID" value="@Model.ticket.TicketID"/>    
            </form>
+
            @if (@Model.UploadMessage == "Incorrect ext")
            {
            <p>File extension not accepted. <br> Accepted file extensions are: .txt, .pdf, .doc, .docx, .xls,
                     .xlsx, .png, .jpg, .jpeg, .gif, .csv, .css, .html, and .json.
            </p>
            }
+
            @foreach(var filePath in Model.ticket.FilePaths)
            {
-               <div>
-                   <a asp-action="GetContent" asp-controller="SingleTicket" asp-route-fileID="@filePath.ID" target="_blank">@filePath.UnhiddenPath.Split("\\")[1]</a>
-               </div>
+           <div>
+               <a asp-action="GetContent" asp-controller="SingleTicket" asp-route-fileID="@filePath.ID" target="_blank">@filePath.UnhiddenPath.Split("\\")[1]</a>
+           </div>
            }
            <form class="form" asp-controller="SingleTicket" asp-action="DeleteTicket" method="post">
                <input type="hidden" name="ticketID" value="@Model.ticket.TicketID"/>
                <button type="submit" class="form__btn">Delete Ticket</button>
            </form>
         </div>
-    </div>
-</section>
+    </section>
 
 

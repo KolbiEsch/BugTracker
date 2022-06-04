@@ -1,19 +1,22 @@
-﻿@import "_base.scss";
-@import "_navbar.scss";
-@import "_authenticate.scss";
-@import "_login-form.scss";
-@import "_login-demo.scss";
-@import "_section-roles.scss";
-@import "_reset.scss";
-@import "_card.scss";
-@import "_utilities.scss";
-@import "_manage-projects.scss";
-@import "_my-projects.scss";
-@import "_my-tickets.scss";
-@import "_single-ticket.scss";
-@import "_inputfile.scss";
-@import "_access-denied.scss";
-@import "_my-account.scss";
-@import "_enable-authenticator.scss";
-@import "_twoFA-login.scss";
-@import "_recovery-login.scss";
+﻿@import "base/_base.scss";
+@import "base/_reset.scss";
+@import "base/_utilities.scss";
+
+@import "components/_card.scss";
+@import "components/_dropdown.scss";
+@import "components/_form.scss";
+@import "components/_inputfile.scss";
+@import "components/_nav.scss";
+
+@import "layout/_centered-container.scss";
+
+@import "pages/_authenticate.scss";
+@import "pages/_login-demo.scss";
+@import "pages/_manage-projects.scss";
+@import "pages/_manage-roles.scss";
+@import "pages/_my-account.scss";
+@import "pages/_my-projects.scss";
+@import "pages/_my-tickets.scss";
+@import "pages/_recovery-login.scss";
+@import "pages/_single-ticket.scss";
+@import "pages//_twoFA-login.scss";

@@ -6,11 +6,12 @@
     var prevDisabled = !Model.Tickets.HasPreviousPage ? "disabled" : "";
     var nextDisabled = !Model.Tickets.HasNextPage ? "disabled" : "";
 }
-
-<section class="my-tickets">
-        <div class="card">
-            <h2 class="card__header">Create New Ticket</h2>
-            <div class="card__body">
+    <section class="card create-ticket">
+        <header class="card__header">
+            <h2>Create New Ticket</h2>
+        </header>
+            
+        <div class="card__body">
             <form asp-action="CreateNewTicket" method="post" class="form">
                 <div class="form__group">
                     <label for="ddlprojects" class="form__label">Project</label>
@@ -67,90 +68,65 @@
 
                 <button class="form__btn" type="submit">Submit</button>
             </form>
-            </div>
         </div>
+    </section>
 
-        <div class="card">
-            <h2 class="card__header">My Tickets</h2>
+    <section class="card assigned-tickets">
+        <header class="card__header">
+            <h2>My Tickets</h2>
+        </header>
+        
             
-            <div class="card__body">
+            
+        <div class="card__body">
             @foreach(var ticket in Model.Tickets)
             {
-                <div class="card__group-container">
-                    <div class="card__group">
-                        <p class="card__group-title">Title:</p>
-                        <p>@ticket.Title</p>
-                    </div>
-                    <div class="card__group">
-                        <p class="card__group-title">Assigned By:</p>
-                        <p>@Model.GetUserFullNameById(ticket.AssignedByID)</p>
-                    </div>
-                    <div class="card__group">
-                        <p class="card__group-title">Project:</p>
-                        <p>@Model.GetProjectTitleById(ticket.ProjectID)</p>
-                    </div>
-                    <div class="card__group">
-                        <p class="card__group-title">Date Created:</p>
-                        <p>@ticket.DateCreated</p>
-                    </div>
-                    <div class="card__group">
-                        <p class="card__group-title">Type:</p>
-                        <p>@ticket.Type</p>
-                    </div>
-                    <div class="card__group">
-                        <p class="card__group-title">Priority:</p>
-                        <p>@ticket.Priority</p>
-                    </div>
-                    <div class="card__group">
-                        <p class="card__group-title">Description:</p>
-                        <p>@ticket.Description</p>
-                    </div>
+            <div class="card__group-container">
+                <div class="card__group">
+                    <p class="card__group-title">Title:</p>
+                    <p>@ticket.Title</p>
                 </div>
-                
-                <a class="form__link block" asp-controller="SingleTicket" asp-action="Index" asp-route-id="@ticket.TicketID">Full Ticket</a>
-            }
-                
-                <a asp-action="Index"
-                asp-route-pageNumber="@(Model.Tickets.PageIndex - 1)"
-                asp-route-currentFilter="@ViewData["CurrentFilter"]"
-                class="form__link mr-small @prevDisabled">
-                Previous
-                </a>
-                <a asp-action="Index"
-                asp-route-pageNumber="@(Model.Tickets.PageIndex + 1)"
-                asp-route-currentFilter="@ViewData["CurrentFilter"]"
-                class="form__link @nextDisabled">
-                Next
-                </a>
+                <div class="card__group">
+                    <p class="card__group-title">Assigned By:</p>
+                    <p>@Model.GetUserFullNameById(ticket.AssignedByID)</p>
+                </div>
+                <div class="card__group">
+                    <p class="card__group-title">Project:</p>
+                    <p>@Model.GetProjectTitleById(ticket.ProjectID)</p>
+                </div>
+                <div class="card__group">
+                    <p class="card__group-title">Date Created:</p>
+                    <p>@ticket.DateCreated</p>
+                </div>
+                <div class="card__group">
+                    <p class="card__group-title">Type:</p>
+                    <p>@ticket.Type</p>
+                </div>
+                <div class="card__group">
+                    <p class="card__group-title">Priority:</p>
+                    <p>@ticket.Priority</p>
+                </div>
+                <div class="card__group">
+                    <p class="card__group-title">Description:</p>
+                    <p>@ticket.Description</p>
+                </div>
             </div>
                 
-        </div>
-</section>
-
-<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
-<script language="javascript" type="text/javascript">
-    function GetUsers(_projectId) {
-        var procemessage = "<option value='0'> Please wait...</option>";
-        $("#ddlusers").html(procemessage).show();
-        var url = "/MyTickets/GetApplicationUserByProjectId/";
-
-        $.ajax({
-            url: url,
-            data: { projectId: _projectId },
-            cache: false,
-            type: "POST",
-            success: function (data) {
-                var markup = "<option value='0'>Select User</option>";
-                for (var x = 0; x < data.length; x++) {
-                    markup += "<option value=" + data[x].Value + ">" + data[x].Text + "</option>";
-                }
-                $("#ddlusers").html(markup).show();
-            },
-            error: function (reponse) {
-                alert("error : " + reponse);
+            <a class="form__link block" asp-controller="SingleTicket" asp-action="Index" asp-route-id="@ticket.TicketID">Full Ticket</a>
             }
-        });
-
-    }
-</script>
+                
+            <a asp-action="Index"
+            asp-route-pageNumber="@(Model.Tickets.PageIndex - 1)"
+            asp-route-currentFilter="@ViewData["CurrentFilter"]"
+            class="form__link mr-small @prevDisabled">
+            Previous
+            </a>
+            <a asp-action="Index"
+            asp-route-pageNumber="@(Model.Tickets.PageIndex + 1)"
+            asp-route-currentFilter="@ViewData["CurrentFilter"]"
+            class="form__link @nextDisabled">
+            Next
+            </a>
+        </div>
+    </section>
 

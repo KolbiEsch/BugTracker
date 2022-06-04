@@ -2,64 +2,65 @@
 @{
     ViewData["Title"] = "Project Management";
 }
+    <section class="card add-users">
+        <header class="card__header">
+            <h2>Add Users to Project</h2>
+        </header>
+                
+        <div class="card__body">
+            <form asp-action="AddUserToProject" method="post" class="form">
+                <div class="form__group">
+                    <label class="form__label" for="project-select">Select Project</label>
+                    <div class="select-dropdown">
+                        <select asp-items="@Model.selectListItems" name="Title" id="project-select"></select>
+                        <span class="select-dropdown__arrow"></span>
+                    </div>
+                </div>
+                <div class="form__group">
+                    <div class="checklist">
+                    @foreach(var user in Model.selectListItemsList)
+                    {
+                        <div class="form__radio-group checklist__item">
+                            <label for="@user.Value" class="form__radio-label">
+                                <input class="form__radio-input" id="@user.Value" type="checkbox" name="users" 
+                                value="@user.Value" checked="@user.Selected" />
+                                <span class="form__radio-button"></span>
+                                @user.Text
+                            </label>
+                        </div>           
+                    }
+                    </div>
+                </div>
+                <button type="submit" class="form__btn">Add Users</button>
+            </form>
+        </div> 
+    </section>
 
+    <section class="card create-project">
+        <header class="card__header">
+            <h2>Create New Project</h2>
+        </header>
 
-<section class="manage-projects">
-    
-            <div class="card">
-                <h2 class="card__header">Add Users to Project</h2>
-                <div class="card__body">
-                        <form asp-action="AddUserToProject" method="post" class="form">
-                            <div class="form__group">
-                                <label class="form__label" for="project-select">Select Project</label>
-                                <div class="select-dropdown">
-                                    <select asp-items="@Model.selectListItems" name="Title" id="project-select"></select>
-                                    <span class="select-dropdown__arrow"></span>
-                                </div>
-                            </div>
-                            <div class="form__group">
-                                <div class="checklist">
-                                @foreach(var user in Model.selectListItemsList)
-                                {
-                                        <div class="form__radio-group checklist__item">
-                                            <label for="@user.Value" class="form__radio-label">
-                                                <input class="form__radio-input" id="@user.Value" type="checkbox" name="users" 
-                                                value="@user.Value" checked="@user.Selected" />
-                                                <span class="form__radio-button"></span>
-                                                @user.Text
-                                            </label>
-                                        </div>
-                                    
-                                }
-                                </div>
-                            </div>
-                            <button type="submit" class="form__btn">Add Users</button>
-                        </form>
-                </div> 
-            </div>
-         
-        <div class="card">
-            <h2 class="card__header">Create New Project</h2>
-            <div class="card__body">
-                    <form asp-action="CreateNewProject" method="post" class="form">
-                        <div class="form__group">
-                            <label for="Title" class="form__label">Title</label>
-                            <input id="Title" name="Title" class="form__input" placeholder="Project title" required/>
-                        </div>
-                        <div class="form__group">
-                            <label for="CentralFocus" class="form__label">Central Focus</label>
-                            <input id="CentralFocus" name="CentralFocus" class="form__input" placeholder="What is the project's main focus" required/>
-                        </div>
-                        <div class="form__group">
-                            <label for="description" class="form__label">Description</label>
-                            <textarea id="description" class="form__input" name="Description" rows="1" placeholder="Give a description" required></textarea>
-                        </div>
-                        <button type="submit" class="form__btn">Create Project</button>
-                    </form>  
-            </div>
+        <div class="card__body">
+            <form asp-action="CreateNewProject" method="post" class="form">
+                <div class="form__group">
+                    <label for="Title" class="form__label">Title</label>
+                    <input id="Title" name="Title" class="form__input" placeholder="Project title" required/>
+                </div>
+                <div class="form__group">
+                    <label for="CentralFocus" class="form__label">Central Focus</label>
+                    <input id="CentralFocus" name="CentralFocus" class="form__input" placeholder="What is the project's main focus" required/>
+                </div>
+                <div class="form__group">
+                    <label for="description" class="form__label">Description</label>
+                    <textarea id="description" class="form__input" name="Description" rows="1" placeholder="Give a description" required></textarea>
+                </div>
+                <button type="submit" class="form__btn">Create Project</button>
+            </form>  
         </div>
+    </section>
     
-</section>
+
 
    
 

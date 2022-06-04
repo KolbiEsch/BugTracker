@@ -36,4 +36,27 @@ a {
     text-decoration: none;
 }
 
+select {
+    appearance: none;
+    -webkit-appearance: none;
+    background-color: transparent;
+    border: none;
+    padding: 0.25em 0.5em;
+    margin: 0;
+    width: 100%;
+    font-family: inherit;
+    font-size: inherit;
+    cursor: inherit;
+    line-height: inherit;
+
+    &:focus {
+        outline: none;
+    }
+}
+
+#qrCode {
+    display: flex;
+    justify-content: center;
+}
+
 

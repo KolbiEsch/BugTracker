@@ -11,12 +11,12 @@
 
     &__body {
         display: flex;
-        height: 60%;
         background-color: $color-primary-light;
     }
 
     &__options {
         width: 20%;
+        padding-bottom: 1rem;
     }
 
     &__content {

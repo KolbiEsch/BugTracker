@@ -4,15 +4,8 @@
     ViewData["Title"] = "Personal Data";
     ViewData["ActivePage"] = ManageNavPages.PersonalData;
 }
-
-
-
-<section class="personal-data">
-    <header class="personal__header">
-        <h3>@ViewData["Title"]</h3>
-    </header>
-
-    <div class="personal__body">
+    <h3>@ViewData["Title"]</h3>
+   
         <p class="mt-small">Your account contains personal data that you have given us. This page allows you to download or delete that data.</p>
         <p class="mt-small">
             <strong>Deleting this data will permanently remove your account, and this cannot be recovered.</strong>
@@ -23,9 +16,7 @@
         <p>
             <a id="delete" asp-page="DeletePersonalData" class="form__link">Delete</a>
         </p>
-    </div>
-</section>
-
+    
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }

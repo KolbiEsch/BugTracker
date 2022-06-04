@@ -5,15 +5,11 @@
     ViewData["ActivePage"] = ManageNavPages.TwoFactorAuthentication;
 }
 
-<partial name="_StatusMessage" for="StatusMessage" />
-
-<section class="enable-authenticator">
-    <header class="enable__header">
-        <h3>@ViewData["Title"]</h3>
-    </header>
-    <div class="enable__body">
+    <partial name="_StatusMessage" for="StatusMessage" />
+    <h3>@ViewData["Title"]</h3>
+    
         <p class="mt-small">To use an authenticator app go through the following steps:</p>
-            <p class="enable__paragraph mt-small">
+            <p class="mt-small">
                 1. Download a two-factor authenticator app like Microsoft Authenticator for
                 <a class="form__link" href="https://go.microsoft.com/fwlink/?Linkid=825072">Android</a> and
                 <a class="form__link" href="https://go.microsoft.com/fwlink/?Linkid=825073">iOS</a> or
@@ -23,12 +19,12 @@
             </p>
         
         
-            <p class="enable__paragraph mt-small">2. Scan the QR Code or enter this key <kbd>@Model.SharedKey</kbd> into your two factor authenticator app. Spaces and casing do not matter.</p>
+            <p class="mt-small">2. Scan the QR Code or enter this key <kbd>@Model.SharedKey</kbd> into your two factor authenticator app. Spaces and casing do not matter.</p>
             
             <div id="qrCode" class="mt-small"></div>
             <div id="qrCodeData" data-url="@Model.AuthenticatorUri"></div>
         
-            <p class="enable__paragraph mt-small">
+            <p class="mt-small">
                 3. Once you have scanned the QR code or input the key above, your two factor authentication app will provide you
                 with a unique code. Enter the code in the confirmation box below.
             </p>
@@ -42,9 +38,7 @@
                 <button type="submit" class="form__btn form__btn--center">Verify</button>
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             </form>
-    </div>
-</section>
-
+    
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 

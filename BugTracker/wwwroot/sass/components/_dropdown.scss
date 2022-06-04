@@ -1,0 +1,26 @@
+﻿.select-multiple {
+    background-color: $white;
+    width: 40%;
+    display: block;
+}
+
+.select-dropdown {
+    width: 40%;
+    border: 1px solid black;
+    cursor: pointer;
+    line-height: inherit;
+    background-color: $white;
+    position: relative;
+
+    &__arrow {
+        width: 0.8em;
+        height: 0.5em;
+        background-color: $color-primary-light;
+        clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+        position: absolute;
+        right: 0;
+        top: 50%;
+        margin-right: 0.8em;
+        transform: translateY(-50%);
+    }
+}
