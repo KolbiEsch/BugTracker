@@ -333,6 +333,12 @@ select {
   background: linear-gradient(to bottom, #ffbf69, 88%, #ffb754);
   color: #ffffff; }
 
+#piechart {
+  font-family: "Fredoka", sans-serif;
+  grid-column: center-start / center-end;
+  margin-top: 5rem;
+  height: 450px; }
+
 .section-demo {
   grid-column: center-start / center-end;
   display: flex;
