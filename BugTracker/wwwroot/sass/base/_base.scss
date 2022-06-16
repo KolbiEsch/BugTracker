@@ -26,6 +26,7 @@ body {
     line-height: 1.6;
     background-color: $bg-light;
     font-size: 1.6rem;
+    position: relative;
 }
 
 main {
@@ -33,5 +34,4 @@ main {
     grid-auto-rows: min-content;
     grid-template-columns: [full-start] 8rem [center-start] repeat(8, [col-start] 1fr [col-end]) 
     [center-end] 8rem [full-end];
-    height: 80vh;
 }

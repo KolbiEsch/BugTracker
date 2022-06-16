@@ -1,35 +1,93 @@
-﻿
-.nav {
-    padding: 1.5rem 2.5rem;
+﻿.nav {
+    line-height: normal;
+    background-color: $bg-dark;
     position: sticky;
     top: 0;
     left: 0;
-    display: flex;
-    background-color: $bg-dark;
+    padding: 0 1rem;
+    display: grid;
+    place-items: start;
+    z-index: 9999;
+
+    ul {
+        display: grid;
+    }
+
+    > ul {
+        grid-auto-flow: column;
+
+        > li {
+            margin: 0 0.5rem;
+            
+
+            a {
+                display: inline-block;
+            }
+
+            > a,
+            .dropdown__title {
+                padding: 1rem 0.5rem;
+            }
+        }
+    }
+}
+
+.dropdown {
+    position: relative;
+
+    &__title {
+        background: transparent;
+        border: none;
+        font-family: inherit;
+        font-size: inherit;
+        display: inline-flex;
+        align-items: center;
+
+
+        &::after {
+            content: "";
+            border: 0.35rem solid transparent;
+            border-top-color: rgba(white, 0.45);
+            margin-left: 0.25em;
+            transform: translateY(0.15em);
+        }
+    }
+
+    &__menu {
+        background-color: $white;
+        border-radius: 4px;
+        box-shadow: 0 0.15em 0.25em rgba(black, 0.25);
+        padding: 0.5em 0;
+        min-width: 15ch;
+        position: absolute;
+        top: calc(100% - 0.25rem);
+        left: 50%;
+        transform: rotateX(-90deg) translateX(-50%);
+        transform-origin: top center;
+        opacity: 0.3;
+        visibility: hidden;
+        transition: 280ms all 120ms ease-out;
+
+
+        a {
+            color: #444;
+            padding: 0.5em;
+            width: 100%;
+        }
+    }
+}
+
+.hover-effect {
+    opacity: 1;
+    transform: rotateX(0) translateX(-50%);
+    visibility: visible;
+}
+
+.nav {
 
     &__list {
         display: flex;
         flex-direction: column;
-    }
-
-    &__list--left {
-        display: flex;
-        margin-right: auto;
-
-        & :not(:last-child) {
-            margin-right: 1.5rem;
-        }
-    }
-
-    &__list--right {
-        display: flex;
-
-        & :not(:last-child) {
-            margin-right: 1.5rem;
-        }
-    }
-
-    &__item {
     }
 
     &__item--vertical {
@@ -43,6 +101,8 @@
         letter-spacing: 1px;
         transition: all .1s;
         cursor: pointer;
+        
+        
 
         &:hover {
             color: $color-primary-light;
@@ -62,14 +122,4 @@
             }
         }
     }
-}
-
-.form-inline .logout-button {
-    background: none;
-    border: none;
-    font-family: "Fredoka", sans-serif;
-    font-size: 1.6rem;
-    font-weight: 600;
-    margin-right: 0;
-    
 }

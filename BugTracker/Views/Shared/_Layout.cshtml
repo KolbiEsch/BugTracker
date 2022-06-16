@@ -1,4 +1,6 @@
 ﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using BugTracker.Data
+@inject SignInManager<ApplicationUser> SignInManager
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,8 +15,8 @@
 </head>
 <body class="container">
     
-        <nav class="nav">
-            <ul class="nav__list--left">
+        <nav class="nav" aria-label="Main Navigation">
+            <ul>
                     <li class="nav__item">
                         <a class="nav__link" aria-current="page" asp-controller="Home" asp-action="Index">Home</a>
                     </li>
@@ -37,8 +39,14 @@
                     <li class="nav-item">
                         <a class="nav__link" asp-controller="MyTickets" asp-action="Index">My Tickets</a>
                     </li>
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                    <li class="dropdown">
+                        <partial name="_LoginPartial"/>
+                    </li>
+                    }
              </ul>           
-             <partial name="_LoginPartial"/>
+             
         </nav>
     
     

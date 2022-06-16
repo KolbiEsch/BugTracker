@@ -17,21 +17,47 @@ $(window).resize(function () {
     drawChart();
 })
 
-const navEl = document.body.querySelector(".nav");
-const navHeight = navEl.offsetHeight;
+let dropdown = document.querySelector(".dropdown");
+let dropdownMenu = document.querySelector(".dropdown__menu");
+let dropdownTitle = document.querySelector(".dropdown__title");
 
-function onLoad(navHeight) {
-    const main = document.body.querySelector(".main");
-    main.style.height = window.innerHeight - navHeight + "px";
+dropdownTitle.addEventListener("click", () => {
+    if (dropdownTitle.classList.contains("active")) {
+        dropdownMenu.classList.remove("hover-effect");
+    }
+    dropdownTitle.classList.toggle("active");
+});
+
+dropdown.addEventListener("mouseover", () => {
+    dropdownMenu.classList.add("hover-effect");
+});
+
+dropdown.addEventListener("mouseout", () => {
+    if (dropdownTitle.classList.contains("active")) {
+        return;
+    }
+    dropdownMenu.classList.remove("hover-effect");
+});
+
+dropdown.addEventListener("focus", focusFunction, true);
+dropdown.addEventListener("focusout", focusOutFunction);
+
+function focusFunction() {
+    dropdownMenu.classList.add("hover-effect");
+}
+
+function focusOutFunction() {
+    if (dropdownTitle.classList.contains("active")) {
+        return;
+    }
+    dropdownMenu.classList.remove("hover-effect");
 }
 
 window.onload = function () {
-    onLoad(navHeight);
-    
-};
-
-window.onresize = function () {
-    onLoad(navHeight);
+    window.onscroll = function () {
+        dropdownMenu.classList.remove("hover-effect");
+        dropdownTitle.classList.remove("active");
+    }
 }
 
 let inputs = document.querySelectorAll(".inputfile");
@@ -74,8 +100,4 @@ function GetUsers(_projectId) {
             alert("error : " + reponse);
         }
     });
-
 }
-
-
-
