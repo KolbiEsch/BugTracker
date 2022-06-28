@@ -7,6 +7,14 @@ $bg-dark: #2ec4b6;
 $color-primary-light: #ffbf69;
 $color-primary-dark: #ff9f1c;
 
+$bp-largest: 100em; // 1600px
+$bp-medium-large: 68.75em; //1100px
+$bp-medium: 53.125em; // 850px
+$bp-medium-small: 43.75em; //700px
+$bp-small: 28.125em; //450px
+
+$card-padding: 0 2.5vw;
+
 *,
 *::after,
 *::before {
@@ -15,9 +23,26 @@ $color-primary-dark: #ff9f1c;
     margin: 0;
 }
 
+*::selection {
+    color: black;
+    background-color: yellow;
+}
+
 html {
     box-sizing: border-box;
     font-size: 62.5%;
+
+    @media only screen and (max-width: $bp-medium-large) {
+        font-size: 58%;
+    }
+
+    @media only screen and (max-width: $bp-medium) {
+        font-size: 53%;
+    }
+
+    @media only screen and (max-width: $bp-small) {
+        font-size: 50%;
+    }
 }
 
 body {
@@ -27,11 +52,13 @@ body {
     background-color: $bg-light;
     font-size: 1.6rem;
     position: relative;
+    
 }
 
 main {
     display: grid;
     grid-auto-rows: min-content;
-    grid-template-columns: [full-start] 8rem [center-start] repeat(8, [col-start] 1fr [col-end]) 
-    [center-end] 8rem [full-end];
+    grid-template-columns: [center-start] repeat(auto-fit, [col-start] minmax(17rem, 1fr) [col-end]) 
+    [center-end];
+
 }

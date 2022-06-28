@@ -1,6 +1,5 @@
 ﻿.form {
    
-
     &__group {
         margin-bottom: 2rem;
         display: flex;
@@ -10,9 +9,8 @@
     &__group--center {
         display: flex;
         flex-direction: column;
-        align-items: center;
         margin: 2rem auto;
-        width: min-content;
+        width: max-content;
     }
 
     &__input {
@@ -22,6 +20,10 @@
         transition: all .2s ease-out;
         font-family: "Fredoka", sans-serif;
         display: block;
+
+        @media only screen and (max-width: $bp-medium-large) {
+            width: 26rem;
+        }
 
         &::placeholder {
             color: black;
@@ -36,8 +38,8 @@
     }
 
     &__label {
+        align-self: start;
         line-height: 1;
-        align-self: flex-start;
         margin-bottom: 1.15rem;
     }
 

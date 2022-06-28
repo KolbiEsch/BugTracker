@@ -14,9 +14,15 @@
     <link rel="stylesheet" href="~/BugTracker.styles.css" asp-append-version="true" />
 </head>
 <body class="container">
-    
+        
         <nav class="nav" aria-label="Main Navigation">
-            <ul>
+            <button class="hamburger">
+                 <span class="bar"></span>
+                 <span class="bar"></span>
+                 <span class="bar"></span>
+            </button>
+
+            <ul class="nav__menu">
                     <li class="nav__item">
                         <a class="nav__link" aria-current="page" asp-controller="Home" asp-action="Index">Home</a>
                     </li>
@@ -45,8 +51,8 @@
                         <partial name="_LoginPartial"/>
                     </li>
                     }
-             </ul>           
-             
+             </ul> 
+
         </nav>
     
     

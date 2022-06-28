@@ -6,7 +6,8 @@
     var prevDisabled = !Model.Tickets.HasPreviousPage ? "disabled" : "";
     var nextDisabled = !Model.Tickets.HasNextPage ? "disabled" : "";
 }
-    <section class="card create-ticket">
+    <div class="create-ticket">
+    <section class="card">
         <header class="card__header">
             <h2>Create New Ticket</h2>
         </header>
@@ -70,14 +71,14 @@
             </form>
         </div>
     </section>
+    </div>
 
-    <section class="card assigned-tickets">
+    <div class="assigned-tickets">
+    <section class="card">
         <header class="card__header">
             <h2>My Tickets</h2>
         </header>
-        
-            
-            
+         
         <div class="card__body">
             @foreach(var ticket in Model.Tickets)
             {
@@ -129,4 +130,4 @@
             </a>
         </div>
     </section>
-
+    </div>

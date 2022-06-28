@@ -20,6 +20,31 @@ $(window).resize(function () {
 let dropdown = document.querySelector(".dropdown");
 let dropdownMenu = document.querySelector(".dropdown__menu");
 let dropdownTitle = document.querySelector(".dropdown__title");
+const navMenu = document.querySelector(".nav__menu");
+const hamburger = document.querySelector(".hamburger");
+
+function doMenuOpen() {
+    navMenu.classList.add("active");
+    document.addEventListener("keyup", function (e) {
+        if (e.keyCode == 27) {
+            doMenuClose();
+        }
+    }, false);
+}
+
+function doMenuClose() {
+    navMenu.classList.remove("active");
+    hamburger.focus();
+}
+
+hamburger.addEventListener("click", function () {
+    if (navMenu.classList.contains("active")) {
+        doMenuClose();
+    }
+    else {
+        doMenuOpen();
+    }
+}, false);
 
 dropdownTitle.addEventListener("click", () => {
     if (dropdownTitle.classList.contains("active")) {
@@ -40,25 +65,24 @@ dropdown.addEventListener("mouseout", () => {
 });
 
 dropdown.addEventListener("focus", focusFunction, true);
-dropdown.addEventListener("focusout", focusOutFunction);
+dropdown.addEventListener("focusout", function (e) {
+    if (e.currentTarget.contains(e.relatedTarget)) {
+        return;
+    } else {
+        focusOutFunction();
+    }
+});
 
 function focusFunction() {
     dropdownMenu.classList.add("hover-effect");
 }
 
 function focusOutFunction() {
-    if (dropdownTitle.classList.contains("active")) {
-        return;
-    }
     dropdownMenu.classList.remove("hover-effect");
+    dropdownTitle.classList.remove("active");
 }
 
-window.onload = function () {
-    window.onscroll = function () {
-        dropdownMenu.classList.remove("hover-effect");
-        dropdownTitle.classList.remove("active");
-    }
-}
+
 
 let inputs = document.querySelectorAll(".inputfile");
 inputs.forEach(function (input) {
@@ -101,3 +125,8 @@ function GetUsers(_projectId) {
         }
     });
 }
+
+
+
+
+

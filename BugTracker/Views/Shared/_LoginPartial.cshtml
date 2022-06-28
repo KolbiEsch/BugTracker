@@ -6,18 +6,18 @@
     var user = await UserManager.GetUserAsync(User);
 }
 
-   <button type="button" class="nav__link dropdown__title" aria-expanded="false" aria-controls="user-dropdown"> 
+   <button type="button" class="dropdown__title" aria-expanded="false" aria-controls="user-dropdown"> 
        @((await UserManager.GetUserAsync(User)).FirstName)  @((await UserManager.GetUserAsync(User)).LastName)
    </button>
 
 <ul class="dropdown__menu" id="user-dropdown">
-    <li class="nav__item">
-        <a  class="nav__link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Profile</a>
+    <li>
+        <a  class="dropdown__link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Profile</a>
     </li>
     @if (user.GroupName.Length > 32)
     {
-    <li class="nav__item">
-        <a class="nav__link"
+    <li>
+        <a class="dropdown__link"
         asp-action="SwitchUser"
         asp-controller="DemoUser"
         asp-route-groupName=@user.GroupName
@@ -26,8 +26,8 @@
         Switch to Developer
         </a>
     </li>
-    <li class="nav__item">
-        <a class="nav__link"
+    <li>
+        <a class="dropdown__link"
         asp-action="SwitchUser"
         asp-controller="DemoUser"
         asp-route-groupName=@user.GroupName
@@ -35,8 +35,8 @@
         Switch to Submitter
         </a>
     </li>
-    <li class=nav__item>
-        <a class="nav__link"
+    <li>
+        <a class="dropdown__link"
         asp-action="SwitchUser"
         asp-controller="DemoUser"
         asp-route-groupName=@user.GroupName
@@ -45,19 +45,21 @@
         </a>
     </li>    
     }
-    <li class="nav__item">
+    <li>
         @if (user.GroupName.Length > 32)
         {
-        <a class="nav__link"
+        <a class="dropdown__link"
         asp-action="EndDemo"
         asp-controller="DemoUser"
         asp-route-groupName=@user.GroupName>
         End Demo
         </a>
-        } else
-          {
-          <a class="nav__link" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">Logout</a>
-           
-          }
+        } 
+        else
+        {
+        <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+            <button class="dropdown__link dropdown__link--btn">Logout</button>
+        </form>
+        }
     </li>
 </ul>

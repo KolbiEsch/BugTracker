@@ -11,7 +11,8 @@
     var prevDisabled = !Model.paginatedAppUsers.HasPreviousPage ? "disabled" : "";
     var nextDisabled = !Model.paginatedAppUsers.HasNextPage ? "disabled" : "";
 }
-    <section class="card add-to-role">
+    <div class="add-to-role">
+    <section class="card">
         <header class="card__header">
             <h2>Add Users to Role</h2>
         </header>
@@ -43,8 +44,10 @@
             </form>
         </div>
      </section>
+     </div>
 
-     <section class="card find-user">
+     <div class="find-user">
+     <section class="card">
         <header class="card__header">
             <h2>Find User</h2>
         </header>
@@ -59,22 +62,22 @@
                     <button type="submit" class="form__btn">Search</button>
                 </div>
             </form>
-            <div class="card__group">
-                <table class="mb-small">
+            
+                <table class="mb-small table">
                     <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Roles</th>
+                            <th class="table__name">Name</th>
+                            <th class="table__email">Email</th>
+                            <th class="table__role">Roles</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach(var item in Model.paginatedAppUsers)
                         {
                         <tr>
-                            <td>@item.FirstName @item.LastName</td>
-                            <td>@item.Email</td>
-                            <td>@_userManager.GetRolesAsync(item).Result.FirstOrDefault("").ToString()</td>
+                            <td class="table__name">@item.FirstName @item.LastName</td>
+                            <td class="table__email">@item.Email</td>
+                            <td class="table__role">@_userManager.GetRolesAsync(item).Result.FirstOrDefault("").ToString()</td>
                         </tr>
                         }
                     </tbody>
@@ -91,11 +94,13 @@
                 class="form__link @nextDisabled">
                 Next
                 </a>
-            </div>
+            
         </div>
      </section>
-     
-     <section class="card create-role">
+     </div>
+
+     <div class="create-role">
+     <section class="card">
         <header class="card__header">
             <h2>Create a New Role</h2>
         </header>
@@ -111,6 +116,7 @@
             </form>
         </div>
     </section>
+    </div>
     
 
     

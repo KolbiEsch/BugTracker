@@ -17,6 +17,22 @@
     &__options {
         width: 20%;
         padding-bottom: 1rem;
+
+        &__link {
+        }
+    }
+
+    &__list-item {
+        margin-top: 1rem;
+
+        &:hover {
+            background-color: $color-primary-dark;
+        }
+    }
+
+    &__list-link {
+        display: block;
+        padding: 1.8rem 1rem;
     }
 
     &__content {
