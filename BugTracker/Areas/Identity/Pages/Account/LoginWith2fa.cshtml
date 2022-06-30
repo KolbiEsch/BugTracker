@@ -4,14 +4,15 @@
     ViewData["Title"] = "Two-factor authentication";
 }
 
+<div class="padding-container">
 <section class="twoFA-login">
 
     <div class="card">
-        <header class="twoFA__header card__header">
+        <header class="card__header">
             <h1>@ViewData["Title"]</h1>
         </header>
     
-        <div class="twoFA__body card__body">
+        <div class="card__body">
             <p>Your login is protected with an authenticator app. Enter your authenticator code below.</p>
 
             <form method="post" class="form" asp-route-returnUrl="@Model.ReturnUrl">
@@ -41,6 +42,7 @@
         </div>
     </div>
 </section>
+</div>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

@@ -20,11 +20,7 @@
 
     &__link {
         color: $white;
-        text-decoration: none;
-        font-weight: 600;
-        letter-spacing: 1px;
         transition: all .1s;
-        cursor: pointer;
         display: inline-block;
         padding: 1rem 0.5rem;
 
@@ -39,7 +35,6 @@
 
     &__title {
         @include reset-button;
-        font-weight: 600;
         letter-spacing: 1px;
         display: inline-flex;
         align-items: center;
@@ -82,9 +77,6 @@
         padding: 0.5em;
         width: 100%;
         display: inline-block;
-        font-weight: 600;
-        letter-spacing: 1px;
-        cursor: pointer;
 
         &:hover {
             color: $color-primary-light;

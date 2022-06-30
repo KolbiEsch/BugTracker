@@ -61,7 +61,10 @@ ul {
   list-style: none; }
 
 a {
-  text-decoration: none; }
+  text-decoration: none;
+  font-weight: 400;
+  letter-spacing: 1px;
+  cursor: pointer; }
 
 select {
   appearance: none;
@@ -112,6 +115,8 @@ select {
     margin-bottom: 1.3rem;
     display: inline-block;
     font-size: 1.6rem; }
+    .card__group--w100 {
+      width: 100%; }
     .card__group-title {
       font-weight: 600; }
 
@@ -236,7 +241,6 @@ select {
 .form__link, .form:link, .form:visited {
   color: black;
   transition: color .1s;
-  font-weight: 600;
   letter-spacing: 0.5px;
   font-size: 1.4rem;
   text-transform: uppercase; }
@@ -254,12 +258,12 @@ select {
 .inputfile + label {
   color: #ffffff;
   background-color: #ff9f1c;
-  padding: 0.75rem 1.3rem;
+  padding: 0.8rem 2rem;
   display: inline-block;
   width: max-content;
   cursor: pointer;
   transition: all .3s ease-out;
-  font-size: 1.45rem;
+  font-size: 1.6rem;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); }
 
 .inputfile + label:hover {
@@ -272,6 +276,14 @@ select {
 .inputfile:focus + label {
   outline: 1px dotted #000;
   outline: -webkit-focus-ring-color auto 5px; }
+
+.link {
+  color: black;
+  display: inline-block;
+  padding: 0.7rem 0;
+  transition: all .1s; }
+  .link:hover {
+    color: white; }
 
 .nav {
   line-height: normal;
@@ -290,11 +302,7 @@ select {
     margin: 0 0.5rem; }
   .nav__link {
     color: #ffffff;
-    text-decoration: none;
-    font-weight: 600;
-    letter-spacing: 1px;
     transition: all .1s;
-    cursor: pointer;
     display: inline-block;
     padding: 1rem 0.5rem; }
     .nav__link:hover {
@@ -308,7 +316,6 @@ select {
     font-family: inherit;
     font-size: inherit;
     cursor: pointer;
-    font-weight: 600;
     letter-spacing: 1px;
     display: inline-flex;
     align-items: center;
@@ -341,10 +348,7 @@ select {
     color: #444;
     padding: 0.5em;
     width: 100%;
-    display: inline-block;
-    font-weight: 600;
-    letter-spacing: 1px;
-    cursor: pointer; }
+    display: inline-block; }
     .dropdown__link:hover {
       color: #ffbf69; }
     .dropdown__link--btn {
@@ -401,12 +405,13 @@ select {
 
 .text-page-centered {
   text-align: center;
-  grid-column: center-start / center-end;
   margin-top: 3rem; }
 
 .page-centered {
   text-align: center;
-  grid-column: center-start / center-end; }
+  max-width: 90rem;
+  margin-left: auto;
+  margin-right: auto; }
 
 .authenticate {
   text-align: center;
@@ -524,9 +529,9 @@ table {
   width: 33.333333%; }
 
 .my-account {
-  grid-column: center-start / center-end;
+  margin: 5vh auto 0 auto;
   text-align: center;
-  margin-top: 3rem; }
+  max-width: 90rem; }
   .my-account__header {
     background-color: #ff9f1c;
     padding: 1.5rem 0;
@@ -535,18 +540,23 @@ table {
     display: flex;
     background-color: #ffbf69; }
   .my-account__options {
-    width: 20%;
+    width: 25%;
     padding-bottom: 1rem; }
   .my-account__list-item {
-    margin-top: 1rem; }
+    margin-top: 1rem;
+    transition: all .05s linear; }
     .my-account__list-item:hover {
       background-color: #ff9f1c; }
   .my-account__list-link {
+    color: black;
     display: block;
-    padding: 1.8rem 1rem; }
+    padding: 1.8rem 1rem;
+    transition: all .05s linear; }
+    .my-account__list-link:hover {
+      color: white; }
   .my-account__content {
     width: 80%;
-    padding: 3rem 4rem; }
+    padding: 3rem 3rem; }
 
 .my-projects {
   padding: 0 2.5vw; }
@@ -569,12 +579,15 @@ table {
   padding: 0 2.5vw; }
 
 .recovery-login {
-  grid-column: center-start / center-end;
-  text-align: center; }
+  text-align: center;
+  max-width: 90rem;
+  margin-left: auto;
+  margin-right: auto; }
 
 .single-ticket {
   padding: 0 2.5vw; }
 
 .twoFA-login {
-  grid-column: center-start / center-end;
-  text-align: center; }
+  text-align: center;
+  max-width: 90rem;
+  margin: 0 auto; }

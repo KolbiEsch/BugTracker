@@ -34,7 +34,7 @@
                     <p class="card__group-title">Priority:</p>
                     <p>@Model.ticket.Priority</p>
                 </div>
-                <div class="card__group">
+                <div class="card__group card__group--w100">
                     <p class="card__group-title">Description:</p>
                     <p>@Model.ticket.Description</p>
                 </div>
@@ -62,7 +62,7 @@
            @foreach(var filePath in Model.ticket.FilePaths)
            {
            <div>
-               <a asp-action="GetContent" asp-controller="SingleTicket" asp-route-fileID="@filePath.ID" target="_blank">@filePath.UnhiddenPath.Split("\\")[1]</a>
+               <a class="link" asp-action="GetContent" asp-controller="SingleTicket" asp-route-fileID="@filePath.ID" target="_blank">@filePath.UnhiddenPath.Split("\\")[1]</a>
            </div>
            }
            <form class="form" asp-controller="SingleTicket" asp-action="DeleteTicket" method="post">

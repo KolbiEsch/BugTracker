@@ -1,10 +1,11 @@
 ﻿.text-page-centered {
     text-align: center;
-    grid-column: center-start / center-end;
     margin-top: 3rem;
 }
 
 .page-centered {
     text-align: center;
-    grid-column: center-start / center-end;
+    max-width: 90rem;
+    margin-left: auto;
+    margin-right: auto;
 }

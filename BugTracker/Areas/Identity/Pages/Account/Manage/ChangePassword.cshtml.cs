@@ -89,6 +89,10 @@ namespace BugTracker.Areas.Identity.Pages.Account.Manage
             var hasPassword = await _userManager.HasPasswordAsync(user);
             if (!hasPassword)
             {
+                if (user.GroupName.Length > 32)
+                {
+                    return RedirectToPage("./DemoUserPassword");
+                }
                 return RedirectToPage("./SetPassword");
             }
 
